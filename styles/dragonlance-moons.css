@@ -1,0 +1,124 @@
+#dlm-hud,
+.dlm-floating-window {
+  position: fixed;
+  z-index: 100;
+  color: #eee;
+  background: radial-gradient(circle at 50% 0%, rgba(34,35,46,.98), rgba(7,8,13,.985) 72%);
+  border: 1px solid rgba(190,174,125,.58);
+  border-radius: 9px;
+  box-shadow: 0 8px 28px rgba(0,0,0,.58), inset 0 0 22px rgba(255,255,255,.025);
+  font-family: serif;
+}
+#dlm-hud { width: 285px; }
+#dlm-hud { top: 80px; }
+.dlm-hud-header, .dlm-window-header { display:flex; align-items:center; justify-content:space-between; gap:8px; padding:8px 10px; border-bottom:1px solid rgba(190,174,125,.28); cursor:move; user-select:none; }
+.dlm-title { font-size:12px; letter-spacing:1.5px; font-weight:700; color:#d9c994; }
+.dlm-title i { margin-right:5px; }
+.dlm-window-tools { display:flex; gap:3px; }
+.dlm-tool { width:23px; height:22px; padding:0; border:0; background:transparent; color:#cdbf91; cursor:pointer; }
+.dlm-tool:hover { background:rgba(255,255,255,.08); color:#fff; }
+.dlm-hud-body { padding:8px 10px 10px; }
+#dlm-hud.minimized .dlm-hud-body, .dlm-floating-window.minimized .dlm-window-body, .dlm-floating-window.minimized .dlm-window-footer { display:none; }
+.dlm-moon-row { display:flex; align-items:center; gap:10px; padding:5px 0; }
+.dlm-moon-info { display:flex; flex-direction:column; line-height:1.12; }
+.dlm-moon-info strong { font-size:13px; }
+.dlm-moon-info span { font-size:11px; opacity:.86; }
+.dlm-moon-info small { font-size:9px; opacity:.55; margin-top:2px; }
+.dlm-alignment { margin-top:7px; padding:7px 8px; text-align:center; font-size:10px; letter-spacing:.7px; border-top:1px solid rgba(190,174,125,.22); color:#d8c58b; }
+.dlm-alignment.night-eye, .dlm-dialog-banner.night-eye { color:#fff; background:linear-gradient(90deg, rgba(83,60,126,.35), rgba(205,184,116,.2), rgba(83,60,126,.35)); text-shadow:0 0 9px rgba(255,255,255,.45); }
+
+/* Lunar discs: astronomical-looking faces with craters and a moving terminator. */
+.dlm-real-moon { position:relative; display:inline-block; width:38px; height:38px; flex:0 0 38px; border-radius:50%; overflow:hidden; filter:drop-shadow(0 0 5px var(--moon-glow)); }
+.dlm-real-moon.large { width:56px; height:56px; flex-basis:56px; }
+.dlm-real-moon svg { width:100%; height:100%; display:block; overflow:visible; }
+.dlm-real-moon.red { filter:drop-shadow(0 0 6px rgba(190,65,48,.28)); }
+.dlm-real-moon.black { filter:drop-shadow(0 0 5px rgba(150,150,170,.20)); }
+.dlm-real-moon.high { filter:drop-shadow(0 0 9px var(--moon-glow)); }
+.dlm-real-moon.low { filter:drop-shadow(0 0 2px rgba(255,255,255,.10)); }
+
+#dlm-hud.minimized { width:42px; height:42px; border-radius:50%; padding:0; overflow:hidden; background:rgba(7,8,13,.90); border-color:rgba(190,174,125,.55); box-shadow:0 3px 14px rgba(0,0,0,.55); }
+#dlm-hud.minimized .dlm-hud-header { width:42px; height:42px; padding:0; border:0; justify-content:center; cursor:move; }
+#dlm-hud.minimized .dlm-title { display:none; }
+#dlm-hud.minimized .dlm-window-tools { position:absolute; inset:0; display:block; }
+#dlm-hud.minimized .dlm-window-tools .dlm-tool { display:none; }
+#dlm-hud.minimized .dlm-window-tools .dlm-minimize { display:flex; align-items:center; justify-content:center; width:42px; height:42px; font-size:0; }
+#dlm-hud.minimized .dlm-minimize::before { content:"☾"; font-size:24px; line-height:1; color:#d9c994; text-shadow:0 0 7px rgba(255,255,255,.25); }
+#dlm-hud.minimized .dlm-hud-body { display:none; }
+
+.dlm-floating-window { min-width:650px; max-width:min(900px, calc(100vw - 30px)); max-height:calc(100vh - 100px); overflow:hidden; left:calc(50% - 325px); top:110px; }
+.dlm-window-header { font-size:13px; font-weight:700; color:#d9c994; }
+.dlm-window-body { padding:8px 12px; max-height:calc(100vh - 190px); overflow:auto; }
+.dlm-window-footer { display:flex; gap:8px; justify-content:flex-end; padding:8px 10px; border-top:1px solid rgba(190,174,125,.22); }
+.dlm-dialog-banner { padding:9px; margin-bottom:10px; text-align:center; font-weight:700; letter-spacing:1.5px; border-radius:5px; border:1px solid rgba(190,174,125,.25); }
+.dlm-detail-row { display:grid; grid-template-columns:1.35fr 1fr 1fr 1.4fr; gap:10px; padding:9px 0; border-bottom:1px solid rgba(128,128,128,.2); align-items:center; }
+.dlm-detail-moon { display:flex; align-items:center; gap:8px; }
+.dlm-detail-moon div { display:flex; flex-direction:column; }
+.dlm-detail-moon small, .dlm-detail-row small { opacity:.6; display:block; margin-top:2px; }
+.dlm-label { display:block; text-transform:uppercase; letter-spacing:.7px; font-size:9px; opacity:.6; margin-bottom:3px; }
+.dlm-alignment-detail { display:grid; grid-template-columns:1fr 1.5fr; gap:12px; margin-top:10px; padding:10px; background:rgba(128,128,128,.08); border-radius:5px; }
+.dlm-footnote { opacity:.65; font-size:11px; }
+.dlm-gm-form { min-width:520px; }
+.dlm-gm-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:10px; }
+.dlm-gm-grid label { display:flex; flex-direction:column; gap:4px; font-weight:700; }
+.dlm-gm-grid input { width:100%; }
+.dlm-rolls { margin-top:12px; padding:8px; border:1px solid rgba(128,128,128,.25); }
+.dlm-action { padding:6px 10px; border:1px solid rgba(190,174,125,.42); border-radius:4px; background:rgba(190,174,125,.1); color:#eee; cursor:pointer; }
+.dlm-action:hover { background:rgba(190,174,125,.2); }
+.dlm-uninitialized { display:flex; flex-direction:column; align-items:center; gap:7px; padding:10px 4px 4px; text-align:center; }
+.dlm-uninitialized-icon { font-size:28px; color:#d8c58b; opacity:.9; }
+.dlm-uninitialized strong { font-size:11px; letter-spacing:1px; color:#d8c58b; }
+.dlm-uninitialized span { font-size:10px; line-height:1.35; opacity:.7; }
+.dlm-primary { width:100%; margin-top:4px; padding:6px 8px; border:1px solid rgba(190,174,125,.45); border-radius:4px; background:rgba(190,174,125,.12); color:#eee; cursor:pointer; }
+.dlm-primary:hover { background:rgba(190,174,125,.22); }
+@media (max-width:700px) {
+  .dlm-floating-window { min-width:0; width:calc(100vw - 20px); left:10px; }
+  .dlm-detail-row { grid-template-columns:1fr 1fr; }
+  .dlm-gm-form { min-width:0; }
+}
+
+.dlm-night-eye-chat {
+  text-align:center;
+  color:#eee5c5;
+  background:radial-gradient(circle at 50% 35%, rgba(92,68,135,.34), rgba(9,10,18,.94) 72%);
+  border:1px solid rgba(214,194,136,.55);
+  border-radius:7px;
+  overflow:hidden;
+  box-shadow:0 0 18px rgba(91,69,140,.28), inset 0 0 18px rgba(255,255,255,.035);
+}
+.dlm-night-eye-chat img { width:100%; max-height:320px; object-fit:cover; display:block; }
+.dlm-night-eye-chat-title { padding:8px 6px 2px; color:#eee5c5 !important; font-weight:700; letter-spacing:2px; text-shadow:0 0 8px rgba(255,255,255,.35); }
+.dlm-night-eye-chat p { margin:4px 10px 10px; color:#eee5c5 !important; opacity:1; font-size:12px; line-height:1.4; }
+.dlm-gm-grid select { width:100%; }
+
+
+.dlm-gm-grid label span { color:#eee5c5; font-size:11px; }
+.dlm-gm-grid select { background:#171a20; color:#eee5c5; border:1px solid rgba(214,194,136,.48); padding:5px 7px; border-radius:4px; }
+.dlm-gm-grid select option { background:#171a20; color:#eee5c5; }
+.dlm-rolls { color:#eee5c5; }
+.dlm-rolls strong { color:#d9c994; }
+.dlm-robe-field { margin-top:8px; padding:6px 0; }
+.dlm-robe-field label { display:flex; align-items:center; justify-content:space-between; gap:12px; color:#eee5c5; }
+.dlm-robe-field select { min-width:180px; background:#171a20; color:#eee5c5; border:1px solid rgba(214,194,136,.48); padding:5px 7px; border-radius:4px; }
+.dlm-wizard-moon-panel { margin-top:8px; border:1px solid rgba(190,174,125,.3); border-radius:5px; overflow:hidden; }
+.dlm-wizard-moon-content { display:flex; align-items:center; gap:12px; padding:8px 10px; color:#eee5c5; }
+.dlm-wizard-moon-content span { opacity:.9; flex:1; }
+.dlm-allocate-spells { padding:5px 8px; background:#171a20; color:#eee5c5; border:1px solid rgba(214,194,136,.48); border-radius:4px; cursor:pointer; }
+.dlm-bonus-spell-form { display:flex; flex-direction:column; gap:8px; }
+.dlm-bonus-spell-form label { display:flex; justify-content:space-between; align-items:center; gap:10px; }
+.dlm-bonus-spell-form select { min-width:100px; }
+
+
+/* Wizard of High Sorcery Moon Magic panel readability */
+.dlm-wizard-moon-panel .general-header,
+.dlm-wizard-moon-content,
+.dlm-wizard-moon-content strong,
+.dlm-wizard-moon-content span {
+  color: #f5f0df !important;
+  text-shadow: 0 1px 2px rgba(0,0,0,.85);
+}
+.dlm-wizard-moon-content { background: rgba(18,20,25,.82); }
+.dlm-allocate-spells {
+  color: #fff !important;
+  font-weight: 700;
+  text-shadow: 0 1px 2px rgba(0,0,0,.9);
+}

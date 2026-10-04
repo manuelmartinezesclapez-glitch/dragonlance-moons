@@ -1,0 +1,40 @@
+{
+  "id": "dragonlance-moons",
+  "title": "Dragonlance Moons of Magic",
+  "description": "Unofficial fan-made Dragonlance lunar magic and Wizard of High Sorcery support for the Advanced Roleplaying System (ARS).",
+  "version": "1.0.0",
+  "compatibility": {
+    "minimum": "14",
+    "verified": "14"
+  },
+  "authors": [
+    {
+      "name": "Manuel Martínez"
+    }
+  ],
+  "esmodules": [
+    "scripts/dragonlance-moons.js"
+  ],
+  "styles": [
+    "styles/dragonlance-moons.css"
+  ],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    }
+  ],
+  "relationships": {
+    "systems": [
+      {
+        "id": "ars",
+        "type": "system",
+        "compatibility": {}
+      }
+    ]
+  },
+  "type": "module",
+  "license": "LICENSE",
+  "readme": "README.md"
+}
